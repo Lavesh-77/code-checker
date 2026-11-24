@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f6f8">
+  <title>Linecheck — Program Practice</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-mark">⇄</span> linecheck</a>
+    <div class="local-badge"><span class="status-dot"></span> Private · runs on this device</div>
+  </header>
+
+  <main class="workspace">
+    <aside class="program-sidebar" aria-label="Programs">
+      <div class="sidebar-heading"><span class="eyebrow">YOUR MANUAL</span><span class="count" id="program-count">Loading…</span></div>
+      <div id="program-list" class="program-list" aria-live="polite"></div>
+    </aside>
+
+    <section class="main-content">
+      <div class="page-intro">
+        <div>
+          <p class="eyebrow">PPS LAB MANUAL</p>
+          <h1>Practice, compare, improve.</h1>
+          <p class="subtitle">Pick a program, add your code, and see exactly what differs.</p>
+        </div>
+        <span class="manual-chip">PDF loaded locally</span>
+      </div>
+
+      <section class="work-card" id="work-card" hidden>
+        <div class="selected-heading">
+          <div><span class="program-label" id="program-label"></span><h2 id="program-title"></h2></div>
+          <button type="button" class="text-button" id="show-reference">View reference code</button>
+        </div>
+        <div class="reference-preview" id="reference-preview" hidden>
+          <div class="preview-header"><span>REFERENCE FROM THE MANUAL</span><button class="icon-button" id="hide-reference" type="button" aria-label="Close reference">×</button></div>
+          <pre id="reference-code"></pre>
+        </div>
+        <div class="editor-heading">
+          <label for="your-code">Your code</label>
+          <label class="upload-button" for="code-upload">↑ <span>Upload file</span></label>
+          <input id="code-upload" type="file" accept=".c,.py,.cpp,text/plain" hidden>
+        </div>
+        <textarea id="your-code" spellcheck="false" autocapitalize="off" autocomplete="off" placeholder="Paste your code here, or upload a .c, .py, or .cpp file…" aria-label="Paste your code"></textarea>
+        <div class="language-row"><label for="language-select">Your code language</label><select id="language-select"><option value="c">C</option><option value="cpp">C++</option><option value="python">Python</option></select></div>
+        <div class="run-warning"><strong>Code runs directly on this computer.</strong> It can access files and resources available to your account. Only run code you trust.</div>
+        <div class="test-heading"><label>Test inputs</label><span>PDF examples are selected automatically when available.</span></div>
+        <div id="sample-tests" class="sample-tests"></div>
+        <label class="custom-input-label" for="custom-input">Add your own input <span>(optional, one test case)</span></label>
+        <textarea id="custom-input" class="custom-input" spellcheck="false" placeholder="Type the input values as if entering them in the program…"></textarea>
+        <label class="consent-row"><input id="run-consent" type="checkbox"><span>I understand this runs the selected program directly on my computer.</span></label>
+        <div class="editor-footer"><span id="upload-name">Paste code or choose a file · .c, .py, .cpp</span><button type="button" id="check-button" class="check-button">Run comparison <span>→</span></button></div>
+        <p class="error-message" id="error-message" role="alert" hidden></p>
+      </section>
+
+      <section class="empty-state" id="empty-state">
+        <div class="empty-icon">⌘</div><h2>Choose a program to get started</h2><p>Select a Practice or Lab program from the list to see its reference and compare your code.</p>
+      </section>
+
+      <section class="results" id="results" hidden aria-live="polite">
+        <div id="test-results" class="test-results"></div>
+        <div class="results-heading code-diff-heading"><div><p class="eyebrow">TEXT COMPARISON</p><h2>Line-by-line differences</h2></div><div class="diff-legend"><span><i class="legend-mark removed"></i>Reference only</span><span><i class="legend-mark added"></i>Your code only</span></div></div>
+        <div class="smart-summary" id="smart-summary"></div>
+        <div class="diff-summary" id="diff-summary"></div>
+        <div class="diff-panel">
+          <div class="diff-pane"><div class="pane-header"><span class="pane-dot reference-dot"></span><span>Manual reference</span></div><div class="code-lines" id="reference-lines"></div></div>
+          <div class="diff-pane"><div class="pane-header"><span class="pane-dot your-dot"></span><span>Your code</span></div><div class="code-lines" id="your-lines"></div></div>
+        </div>
+        <p class="diff-footnote">The similarity note is a local text heuristic, not proof of equivalent behavior. Code is never run.</p>
+      </section>
+      <footer>LINECHECK <span>·</span> YOUR CODE STAYS ON YOUR DEVICE</footer>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
